@@ -19,7 +19,7 @@ public class GeneroController {
     @Autowired
     private GeneroRepository generoRepo;
 
-    @RequestMapping("/list")
+    @RequestMapping("list")
     public String list(Model model) {
         model.addAttribute("generos", generoRepo.findAll());
         return "list.jsp"; 
@@ -61,7 +61,7 @@ public class GeneroController {
         return "redirect:/genero/list";
     }
 
-    @RequestMapping("/delete/{id}")
+    @RequestMapping("delete/{id}")
     public String formDelete(Model model, @PathVariable int id) {
         Optional<Genero> genero = generoRepo.findById(id);
         if(!genero.isPresent())
@@ -70,7 +70,7 @@ public class GeneroController {
         return "/genero/delete.jsp";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
     public String confirmDelete(@RequestParam("id") int id) {
         generoRepo.deleteById(id);
         return "redirect:/genero/list";
